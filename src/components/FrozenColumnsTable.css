@@ -1,0 +1,47 @@
+.TableContainer {
+    display: block;
+    border: 1px solid grey;
+    margin: 10px;
+    width: 100%;
+    overflow: auto;
+    white-space: nowrap;
+    margin: 20px;
+}
+
+.TableHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    background-color: #f1f1f1;
+}
+
+.TableRow {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+}
+
+.FixedColumn {
+    position: sticky;
+    left: calc(index * width);
+    background-color: #f1f1f1;
+    z-index: 1;
+
+}
+
+th,
+td {
+    padding: 10px;
+}
+
+.header {
+    background-color: #f1f1f1;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+}
+
+.priority {
+    z-index: 3;
+}

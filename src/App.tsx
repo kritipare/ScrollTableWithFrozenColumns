@@ -1,18 +1,19 @@
-import React from 'react';
-import {logo} from './util/contants';
-import './App.css';
+import { logo } from "./util/contants";
+import "./App.css";
+import Table from "./components/Table";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="logo" />
-        <h1>
-          Data Table with frozen columns
-        </h1>
-      </header>
-    </div>
-  );
+    return (
+        <div className='App'>
+            <header className='App-header'>
+                <img src={logo} alt='logo' />
+                <h1>Data Table with frozen columns</h1>
+            </header>
+            <main>
+                <Table />
+            </main>
+        </div>
+    );
 }
 
 export default App;
