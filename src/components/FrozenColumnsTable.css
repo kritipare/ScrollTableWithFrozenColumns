@@ -1,11 +1,13 @@
 .TableContainer {
     display: block;
     border: 1px solid grey;
-    margin: 10px;
     width: 100%;
     overflow: auto;
     white-space: nowrap;
-    margin: 20px;
+    overflow-y: auto;
+    height: 80vh;
+    width: 95vw;
+    margin: auto;
 }
 
 .TableHeader {
