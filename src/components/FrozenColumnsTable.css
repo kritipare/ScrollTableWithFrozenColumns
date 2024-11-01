@@ -43,7 +43,3 @@ thead th {
     position: sticky;
     top: 0;
 }
-
-.priority {
-    z-index: 3;
-}
