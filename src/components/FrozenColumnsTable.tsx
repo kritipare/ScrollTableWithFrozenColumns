@@ -1,5 +1,6 @@
 import { TableData } from "../util/TableData";
 import "./FrozenColumnsTable.css";
+import VirtualizedList from "./VirtualizedList";
 
 interface FrozenColumnsTableProps {
     data: Array<TableData>;
@@ -55,9 +56,14 @@ const FrozenColumnsTable = ({
             <table role='table' className='TableContainer'>
                 <thead>{headerData(data[0], frozenColumns)}</thead>
                 <tbody>
-                    {Object.values(data).map((row) => {
+                    <VirtualizedList
+                        itemHeight={30}
+                        viewportHeight={1200}
+                        items={data}
+                    />
+                    {/* {Object.values(data).map((row) => {
                         return tableData(row, frozenColumns);
-                    })}
+                    })} */}
                 </tbody>
             </table>
         </div>
