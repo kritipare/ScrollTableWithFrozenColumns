@@ -1,3 +1,4 @@
+import React from "react";
 import { TableData } from "../util/TableData";
 import "./FrozenColumnsTable.css";
 
@@ -53,15 +54,23 @@ const FrozenColumnsTable = ({
     return (
         <div>
             <table role='table' className='TableContainer'>
-                <thead>{headerData(data[0], frozenColumns)}</thead>
+                <thead>
+                    {data.length ? headerData(data[0], frozenColumns) : null}
+                </thead>
                 <tbody>
-                    {Object.values(data).map((row) => {
-                        return tableData(row, frozenColumns);
-                    })}
+                    {data.length ? (
+                        Object.values(data).map((row) => {
+                            return tableData(row, frozenColumns);
+                        })
+                    ) : (
+                        <tr role='row'>
+                            <td>NO data found!</td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>
     );
 };
 
-export default FrozenColumnsTable;
+export default React.memo(FrozenColumnsTable);
