@@ -1,4 +1,4 @@
-import { logo } from "./util/contants";
+import { logo } from "./util/constants";
 import "./App.css";
 import Table from "./components/Table";
 

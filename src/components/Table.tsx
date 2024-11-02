@@ -1,9 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import FrozenColumnsTable from "./FrozenColumnsTable";
-import { FROZEN_COLUMNS } from "../util/contants";
+import { FROZEN_COLUMNS } from "../util/constants";
 import { TableData } from "../util/TableData";
 import "./Table.css";
 
+/**
+ * Table Component
+ * Manages data fetching, filtering, and sorting for the table. Integrates the FrozenColumnsTable component and includes a search input.
+ * @component
+ */
 const Table = () => {
     const [data, setData] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
@@ -12,8 +17,11 @@ const Table = () => {
         key: "",
         direction: "",
     });
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Apply sorting
+    /**
+     * Applies sorting to the filtered data based on the current sort configuration.
+     */
     if (sortConfig.key) {
         filteredData.sort((a, b) => {
             if (!sortConfig.direction) {
@@ -27,6 +35,10 @@ const Table = () => {
         });
     }
 
+    /**
+     * Handles the sorting configuration update based on the column key and toggles the sorting direction.
+     * @param {string} key - Column key to sort by.
+     */
     const handleSort = useCallback(
         (key: string) => {
             let direction = "asc";
@@ -43,6 +55,9 @@ const Table = () => {
         [sortConfig],
     );
 
+    /**
+     * Filters the table data based on the search query, matching against specific columns.
+     */
     const handleFilter = () => {
         const filteredData = data.filter(
             (item: TableData) =>
@@ -57,39 +72,55 @@ const Table = () => {
         setFilteredData(filteredData);
     };
 
+    // Apply filtering whenever the search query changes
     useEffect(() => {
         handleFilter();
     }, [searchQuery]);
 
+    /**
+     * Fetches table data from the API, then updates the data and filteredData states.
+     */
     useEffect(() => {
         async function fetchData() {
+            setIsLoading(true);
             const response = await fetch("http://localhost:4000").then((res) =>
                 res.json(),
             );
             setData(response);
             setFilteredData(response);
+            setIsLoading(false);
         }
         fetchData();
     }, []);
 
-    if (data && data.length > 0)
-        return (
-            <>
-                <input
-                    className='search-query'
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    value={searchQuery}
-                    placeholder='Search...'
-                />
-                <FrozenColumnsTable
-                    data={filteredData}
-                    frozenColumns={FROZEN_COLUMNS}
-                    sortConfig={sortConfig}
-                    handleSort={handleSort}
-                />
-            </>
-        );
-    return null;
+    return (
+        <>
+            {isLoading ? (
+                <p aria-busy='true' aria-live='polite'>
+                    Loading data...
+                </p>
+            ) : (
+                <>
+                    <input
+                        className='search-query'
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        value={searchQuery}
+                        placeholder='Search...'
+                        aria-label='Search table data'
+                    />
+                    {/* Announce filtered data updates */}
+                    <div aria-live='polite'>
+                        <FrozenColumnsTable
+                            data={filteredData}
+                            frozenColumns={FROZEN_COLUMNS}
+                            sortConfig={sortConfig}
+                            handleSort={handleSort}
+                        />
+                    </div>
+                </>
+            )}
+        </>
+    );
 };
 
 export default Table;
