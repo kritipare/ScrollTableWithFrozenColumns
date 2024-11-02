@@ -43,3 +43,9 @@ thead th {
     position: sticky;
     top: 0;
 }
+
+.sort-icon {
+    font-size: 14px;
+    font-weight: 800;
+    padding-left: 5px;
+}

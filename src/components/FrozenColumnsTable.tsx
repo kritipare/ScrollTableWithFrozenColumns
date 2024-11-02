@@ -1,17 +1,25 @@
 import React from "react";
-import { TableData } from "../util/TableData";
+import { SortConfig, TableData } from "../util/TableData";
 import "./FrozenColumnsTable.css";
 
 interface FrozenColumnsTableProps {
     data: Array<TableData>;
     frozenColumns: number;
+    sortConfig: SortConfig;
+    handleSort: (key: string) => void;
 }
 
-const headerData = (data: TableData, frozenColumns: number) => {
+const headerData = (
+    data: TableData,
+    frozenColumns: number,
+    sortConfig: SortConfig,
+    handleSort: (key: string) => void,
+) => {
     return (
         <tr role='row'>
             {Object.keys(data).map((header, index) => (
                 <th
+                    onClick={() => handleSort(header)}
                     role='columnheader'
                     className={
                         index < frozenColumns ? "FixedColumn header" : "header"
@@ -22,6 +30,14 @@ const headerData = (data: TableData, frozenColumns: number) => {
                         zIndex: index < frozenColumns ? 2 : 1,
                     }}>
                     {header}
+                    <span className='sort-icon'>
+                        {sortConfig.key === header &&
+                            (sortConfig.direction === "asc"
+                                ? "↑"
+                                : sortConfig.direction === "desc"
+                                ? "↓"
+                                : "")}
+                    </span>
                 </th>
             ))}
         </tr>
@@ -50,12 +66,21 @@ const tableData = (row: TableData, frozenColumns: number) => {
 const FrozenColumnsTable = ({
     data,
     frozenColumns,
+    sortConfig,
+    handleSort,
 }: FrozenColumnsTableProps) => {
     return (
         <div>
             <table role='table' className='TableContainer'>
                 <thead>
-                    {data.length ? headerData(data[0], frozenColumns) : null}
+                    {data.length
+                        ? headerData(
+                              data[0],
+                              frozenColumns,
+                              sortConfig,
+                              handleSort,
+                          )
+                        : null}
                 </thead>
                 <tbody>
                     {data.length ? (
