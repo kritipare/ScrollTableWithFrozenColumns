@@ -1,46 +1,133 @@
-# Getting Started with Create React App
+# ScrollTableWithFrozenColumns
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based, dynamic table component that allows smooth scrolling with frozen
+columns. This component is designed to handle large datasets efficiently,
+providing a flexible and customizable solution for data display requirements.
 
-## Available Scripts
+![ScrollTableWithFrozenColumns](./path/to/screenshot.png)
 
-In the project directory, you can run:
+<!-- Optional: Add a screenshot here for better visual representation -->
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Table of Contents
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+-   [Installation](#installation)
+-   [Setup](#setup)
+-   [Overview](#overview)
+-   [Architecture](#architecture)
+-   [Technologies Used](#technologies-used)
+-   [Key Features](#key-features)
+-   [Usage](#usage)
+-   [Contributing](#contributing)
+-   [License](#license)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+To get started with this project, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository**:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ```bash
+    git clone https://github.com/kritipare/ScrollTableWithFrozenColumns.git
+    cd ScrollTableWithFrozenColumns
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies**: Ensure you have [Node.js](https://nodejs.org/) and
+   [npm](https://www.npmjs.com/) installed.
 
-### `npm run eject`
+    ```bash
+    npm install
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. **Run the application**: To start the development server, run:
+    ```bash
+    npm start
+    ```
+    This command launches the app at `http://localhost:3000` in development
+    mode.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Overview
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The **ScrollTableWithFrozenColumns** is a React component that offers a
+performant, scrollable table with support for frozen (fixed) columns. It is
+particularly useful in scenarios where large datasets need to be displayed,
+allowing users to scroll horizontally and vertically while maintaining
+visibility for critical columns on the left side of the table.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Architecture
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The application follows a component-based architecture, leveraging React's
+powerful rendering capabilities to create a modular, reusable table component.
+Key architectural highlights include:
+
+1. **Component Structure**:
+
+    - A main table component that wraps rows and cells with optimized rendering
+      for frozen columns.
+    - Child components handle individual cells, rows, and scrolling behavior.
+
+2. **State Management**:
+
+    - React’s built-in state and hooks are utilized to manage table data, scroll
+      positions, and user interactions.
+
+3. **Styling**:
+
+    - CSS-in-JS libraries such as Styled Components are used to manage
+      component-specific styles, while global styles are handled with standard
+      CSS.
+
+4. **Performance Optimization**:
+    - The app optimizes rendering with `React.memo`, `useCallback` and other
+      memoization techniques, ensuring smooth scrolling and fast data handling.
+
+---
+
+## Technologies Used
+
+-   **React**: For building user interface components.
+-   **TypeScript** : Type safety and better tooling support.
+-   **ESLint** and **Prettier**: For code quality and consistent formatting.
+-   **API** : NodeJS server deployed on render for fetching data.
+
+---
+
+## Key Features
+
+-   **Frozen Columns**: Essential columns remain visible as you scroll
+    horizontally.
+-   **Smooth Scrolling**: Optimized scrolling behavior for large datasets.
+-   **Responsive Design**: Adapts to various screen sizes for a better user
+    experience.
+-   **Customizable**: Configurable column freezing, styling, and row heights.
+-   **Performance Optimizations**: Designed to handle extensive data without
+    compromising on performance.
+-   **Accessibility**: Make sure the table is accessible, including proper ARIA
+    roles for table elements and keyboard navigation.
+
+---
+
+## Usage
+
+To integrate the ScrollTableWithFrozenColumns component into your project:
+
+1. Import the component:
+
+2. Pass in the required data and configurations as props:
+    ```jsx
+    <FrozenColumnsTable
+        data={filteredData}
+        frozenColumns={FROZEN_COLUMNS}
+        sortConfig={sortConfig}
+        handleSort={handleSort}
+    />
+    ```
+
+---
