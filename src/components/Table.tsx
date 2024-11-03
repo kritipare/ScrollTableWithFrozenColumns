@@ -83,9 +83,9 @@ const Table = () => {
     useEffect(() => {
         async function fetchData() {
             setIsLoading(true);
-            const response = await fetch("http://localhost:4000").then((res) =>
-                res.json(),
-            );
+            const response = await fetch(
+                process.env.REACT_APP_API_URL as string,
+            ).then((res) => res.json());
             setData(response);
             setFilteredData(response);
             setIsLoading(false);
