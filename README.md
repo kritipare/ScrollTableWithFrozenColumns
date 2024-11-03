@@ -4,10 +4,6 @@ A React-based, dynamic table component that allows smooth scrolling with frozen
 columns. This component is designed to handle large datasets efficiently,
 providing a flexible and customizable solution for data display requirements.
 
-![ScrollTableWithFrozenColumns](./path/to/screenshot.png)
-
-<!-- Optional: Add a screenshot here for better visual representation -->
-
 ---
 
 ## Table of Contents
@@ -19,8 +15,6 @@ providing a flexible and customizable solution for data display requirements.
 -   [Technologies Used](#technologies-used)
 -   [Key Features](#key-features)
 -   [Usage](#usage)
--   [Contributing](#contributing)
--   [License](#license)
 
 ---
 
